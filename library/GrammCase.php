@@ -167,7 +167,7 @@ class GrammCase
                     $tmpWord = $tmpWord . 'om';
                     break;
                 case 'e':
-                    $tmpWord = $tmpWord . 'tom';
+                    $tmpWord .= 'm';
                     break;
             }
         }
@@ -208,12 +208,11 @@ class GrammCase
                 case 'a':
                     $tmpWord = substr($tmpWord, 0, $this->length - 1) . 'i';
                     break;
+                case 'e':
                 case 'o':
                     $tmpWord = substr($tmpWord, 0, $this->length - 1) . 'u';
                     break;
-                case 'e':
-                    $tmpWord .= 'tu';
-                    break;
+
                 case 'g':
                 case 't':
                 case 'r':
