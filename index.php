@@ -64,7 +64,7 @@ include ('controller.php');
 
 <form action="" method="post">
     Insert new name:<br>
-    <input type="text" name="word" value="">
+    <input type="text" name="word" value="" autofocus>
     <input type="submit" name="add" value="Submit">
 </form>
 
