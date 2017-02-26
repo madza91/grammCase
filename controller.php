@@ -12,6 +12,7 @@
  */
 include('library/GrammCase.php');
 
+session_start();
 /*
  * Default prepared array
  */
@@ -39,6 +40,22 @@ $names = [
     'Zlatomir',
     'Buda',
 ];
+
+
+/*
+ * Catch POST and store in SESSION global variable
+ */
+if(isset($_POST['add'])){
+    $word = $_POST['word'];
+
+    $_SESSION[$word] = $word;
+}
+
+/*
+ * Merge saved names with default names array
+ */
+$names = array_merge($names, $_SESSION);
+
 
 /*
  * Prepare array for view
