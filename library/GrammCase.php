@@ -83,7 +83,34 @@ class GrammCase
     public function dative()
     {
 
-        return '';
+
+        switch ($this->lastTwo) {
+            case 'ar':
+                return $this->changeLast('ru', 2);
+        }
+
+
+        switch ($this->lastOne) {
+            case 'a':
+                return $this->changeLast('i', 1);
+            case 'i':
+                return $this->changeLast('ju');
+            case 'o':
+            case 'e':
+                return $this->changeLast('u', 1);
+            case 'n':
+            case 't':
+            case 'v':
+            case 'r':
+            case 's':
+            case 'g':
+            case 'k':
+                return $this->changeLast('u');
+            default:
+                return $this->word;
+        }
+
+
     }
 
 
@@ -111,11 +138,11 @@ class GrammCase
         switch ($this->lastOne) {
             case 'a':
                 return $this->changeLast('u', 1);
-                break;
+            case 'i':
+                return $this->changeLast('ja');
             case 'o':
             case 'e':
                 return $this->changeLast('a', 1);
-                break;
             case 'n':
             case 't':
             case 'v':
@@ -147,13 +174,10 @@ class GrammCase
             case 'da':
             case 'sa':
                 return $this->changeLast('o', 1);
-                break;
             case 'ca':
                 return $this->changeLast('e', 1);
-                break;
             case 'ar':
                 return $this->changeLast('re', 2);
-                break;
         }
 
 
@@ -164,10 +188,8 @@ class GrammCase
             case 'r':
             case 's':
                 return $this->changeLast('e');
-                break;
             case 'g':
                 return $this->changeLast('že', 1);
-                break;
             case 'k':
                 return $this->changeLast('če', 1);
             default:
@@ -192,7 +214,6 @@ class GrammCase
         switch ($this->lastTwo) {
             case 'ar':
                 return $this->changeLast('rom', 2);
-                break;
         }
 
 
@@ -200,7 +221,8 @@ class GrammCase
             case 'o':
             case 'a':
                 return $this->changeLast('om', 1);
-                break;
+            case 'i':
+                return $this->changeLast('jem');
             case 'r':
             case 'k':
             case 'g':
@@ -208,10 +230,8 @@ class GrammCase
             case 'n':
             case 't':
                 return $this->changeLast('om');
-                break;
             case 'e':
                 return $this->changeLast('m');
-                break;
             default:
                 return $this->word;
         }
@@ -234,18 +254,17 @@ class GrammCase
         switch ($this->lastTwo) {
             case 'ar':
                 return $this->changeLast('ru', 2);
-                break;
         }
 
 
         switch ($this->lastOne) {
             case 'a':
                 return $this->changeLast('i', 1);
-                break;
+            case 'i':
+                return $this->changeLast('ju');
             case 'e':
             case 'o':
                 return $this->changeLast('u', 1);
-                break;
             case 'g':
             case 'k':
             case 't':
@@ -253,7 +272,6 @@ class GrammCase
             case 'n':
             case 'v':
                 return $this->changeLast('u');
-                break;
             default:
                 return $this->word;
         }
