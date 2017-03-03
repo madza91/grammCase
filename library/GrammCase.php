@@ -27,6 +27,23 @@ class GrammCase
 
 
     /**
+     * Replace last letters for new one
+     *
+     * @param $additional
+     * @param int $cutLast
+     * @return string
+     */
+    public function changeLast($additional, $cutLast = 0)
+    {
+
+        $tmpWord = substr($this->word, 0, $this->length - $cutLast) . $additional;
+
+        return $tmpWord;
+
+    }
+
+
+    /**
      * Case: Nominative
      * Indicates: Subject of a finite verb
      * Questions: Ko, što
@@ -45,6 +62,7 @@ class GrammCase
     /**
      * Case: Genitive
      * Indicates: Possessor of another noun
+     * Questions: Koga, cega
      *
      * @return mixed
      */
@@ -57,6 +75,8 @@ class GrammCase
 
     /**
      * Case: Dative
+     * Indicates: Indirect object of a verb
+     * Questions: Kome, cemu
      *
      * @return mixed
      */
@@ -69,6 +89,8 @@ class GrammCase
 
     /**
      * Case: Accusative
+     * Indicates: Direct object of a transitive verb
+     * Questions: Koga, sta
      *
      * @return mixed
      */
@@ -76,13 +98,44 @@ class GrammCase
     {
 
 
-        return '';
+        /**
+         * Check for last two letters
+         */
+        switch ($this->lastTwo) {
+            case 'ar':
+                return $this->changeLast('ra', 2);
+                break;
+        }
+
+
+        switch ($this->lastOne) {
+            case 'a':
+                return $this->changeLast('u', 1);
+                break;
+            case 'o':
+            case 'e':
+                return $this->changeLast('a', 1);
+                break;
+            case 'n':
+            case 't':
+            case 'v':
+            case 'r':
+            case 's':
+            case 'g':
+            case 'k':
+                return $this->changeLast('a');
+            default:
+                return $this->word;
+        }
+
+
     }
 
 
     /**
      * Case: Vocative
      * Indicates: Addressee
+     * Questions: Hej
      *
      * @return string
      */
@@ -90,44 +143,37 @@ class GrammCase
     {
 
 
-        $tmpWord    = $this->word;
-        $totalChars = $this->length;
-        $usedCase = false;
-
-
         switch ($this->lastTwo) {
             case 'da':
             case 'sa':
-                $tmpWord = substr($tmpWord, 0, $totalChars-1) . 'o';
-                $usedCase = 1;
+                return $this->changeLast('o', 1);
                 break;
             case 'ca':
-                $tmpWord = substr($tmpWord, 0, $totalChars-1) . 'e';
-                $usedCase = 2;
+                return $this->changeLast('e', 1);
                 break;
             case 'ar':
-                $tmpWord = substr($tmpWord, 0, $totalChars-2) . 're';
-                $usedCase = 3;
+                return $this->changeLast('re', 2);
                 break;
         }
 
 
-        if (!$usedCase) {
-            switch ($this->lastOne) {
-                case 'n':
-                case 't':
-                case 'v':
-                case 'r':
-                case 's':
-                    $tmpWord .= 'e';
-                    break;
-                case 'g':
-                    $tmpWord = substr($tmpWord, 0, $totalChars-1) . 'že';
-            }
+        switch ($this->lastOne) {
+            case 'n':
+            case 't':
+            case 'v':
+            case 'r':
+            case 's':
+                return $this->changeLast('e');
+                break;
+            case 'g':
+                return $this->changeLast('že', 1);
+                break;
+            case 'k':
+                return $this->changeLast('če', 1);
+            default:
+                return $this->word;
         }
 
-
-        return $tmpWord;
 
     }
 
@@ -135,98 +181,84 @@ class GrammCase
     /**
      * Case: Instrumental
      * Indicates: An object used in performing an action
+     * Questions: S kim, cim
      *
      * @return string
      */
     public function instrumental()
     {
 
-        $tmpWord = $this->word;
-        $usedCase = false;
-
-
 
         switch ($this->lastTwo) {
             case 'ar':
-                $tmpWord = substr($tmpWord, 0, $this->length - 2) . 'rom';
-                $usedCase = 1;
+                return $this->changeLast('rom', 2);
                 break;
         }
 
 
-        if (!$usedCase) {
-            switch ($this->lastOne) {
-                case 'o':
-                case 'a':
-                    $tmpWord = substr($tmpWord, 0, $this->length - 1) . 'om';
-                    break;
-                case 'r':
-                case 'g':
-                case 'v':
-                case 'n':
-                    $tmpWord = $tmpWord . 'om';
-                    break;
-                case 'e':
-                    $tmpWord .= 'm';
-                    break;
-            }
+        switch ($this->lastOne) {
+            case 'o':
+            case 'a':
+                return $this->changeLast('om', 1);
+                break;
+            case 'r':
+            case 'k':
+            case 'g':
+            case 'v':
+            case 'n':
+            case 't':
+                return $this->changeLast('om');
+                break;
+            case 'e':
+                return $this->changeLast('m');
+                break;
+            default:
+                return $this->word;
         }
 
 
-
-        return $tmpWord;
     }
 
 
     /**
      * Case: Locative
      * Indicates: Location
+     * Questions: Gde, O kome, o cemu
      *
      * @return mixed
      */
     public function locative()
     {
 
-        $tmpWord = $this->word;
-        $usedCase = false;
-
-
 
         switch ($this->lastTwo) {
             case 'ar':
-                $tmpWord = substr($tmpWord, 0, $this->length - 2) . 'ru';
-                $usedCase = 1;
+                return $this->changeLast('ru', 2);
                 break;
-
-
         }
 
 
-
-        if (!$usedCase) {
-            switch ($this->lastOne) {
-                case 'a':
-                    $tmpWord = substr($tmpWord, 0, $this->length - 1) . 'i';
-                    break;
-                case 'e':
-                case 'o':
-                    $tmpWord = substr($tmpWord, 0, $this->length - 1) . 'u';
-                    break;
-
-                case 'g':
-                case 't':
-                case 'r':
-                case 'n':
-                case 'v':
-                    $tmpWord .= 'u';
-                    break;
-
-            }
+        switch ($this->lastOne) {
+            case 'a':
+                return $this->changeLast('i', 1);
+                break;
+            case 'e':
+            case 'o':
+                return $this->changeLast('u', 1);
+                break;
+            case 'g':
+            case 'k':
+            case 't':
+            case 'r':
+            case 'n':
+            case 'v':
+                return $this->changeLast('u');
+                break;
+            default:
+                return $this->word;
         }
 
 
-
-        return $tmpWord;
     }
 
 }

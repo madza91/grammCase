@@ -28,7 +28,7 @@ $names = [
     'Dragoslav',
     'Zoran',
     'Miodrag',
-    'Srdjan',
+    'Novak',
     'Petar',
     'Petra',
     'Nikola',
