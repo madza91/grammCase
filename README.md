@@ -9,7 +9,7 @@ Just clone it, and run project root folder.
 
 
 ## Helpful links
-* [Demo page](http://madza.rs/demo/grammCase/)
+* [Demo page](https://goo.gl/6lDTSB)
 * [Serbian names](http://autentik.net/sva_srpska_imena/sva_srpska_imena.php)
 * Wikipedia - Grammatical case: [serbian](https://sh.wikipedia.org/wiki/Pade%C5%BE) / [english](https://en.wikipedia.org/wiki/Grammatical_case)
 

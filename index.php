@@ -46,7 +46,7 @@ include ('controller.php');
         <th>Lokativ</th>
     </tr>
 
-    <?php foreach($results as $name) { ?>
+    <?php foreach($results as $name) : ?>
     <tr>
         <td><?php echo $name['nominative']; ?></td>
         <td><?php echo $name['genitive']; ?></td>
@@ -56,7 +56,7 @@ include ('controller.php');
         <td><?php echo $name['instrumental']; ?></td>
         <td><?php echo $name['locative']; ?></td>
     </tr>
-    <?php } ?>
+    <?php endforeach; ?>
 
 </table>
 
