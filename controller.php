@@ -41,7 +41,6 @@ $names = [
     'Buda',
 ];
 
-
 /*
  * Catch POST and store in SESSION global variable
  */
@@ -61,21 +60,20 @@ $names = array_merge($names, $_SESSION);
  * Prepare array for view
  */
 foreach ($names as $key => $name) {
-
     $grammCase = new GrammCase($name);
 
-    $wordGenitive       = $grammCase->genitive();
-    $wordDative         = $grammCase->dative();
-    $wordAccusative     = $grammCase->accusative();
-    $wordVocative       = $grammCase->vocative();
-    $wordInstrumental   = $grammCase->instrumental();
-    $wordLocative       = $grammCase->locative();
+    $wordGenitive     = $grammCase->genitive();
+    $wordDative       = $grammCase->dative();
+    $wordAccusative   = $grammCase->accusative();
+    $wordVocative     = $grammCase->vocative();
+    $wordInstrumental = $grammCase->instrumental();
+    $wordLocative     = $grammCase->locative();
 
-    $results[$key]['nominative']    = $name;
-    $results[$key]['genitive']      = $wordGenitive;
-    $results[$key]['dative']        = $wordDative;
-    $results[$key]['accusative']    = $wordAccusative;
-    $results[$key]['vocative']      = $wordVocative;
-    $results[$key]['instrumental']  = $wordInstrumental;
-    $results[$key]['locative']      = $wordLocative;
+    $results[$key]['nominative']   = $name;
+    $results[$key]['genitive']     = $wordGenitive;
+    $results[$key]['dative']       = $wordDative;
+    $results[$key]['accusative']   = $wordAccusative;
+    $results[$key]['vocative']     = $wordVocative;
+    $results[$key]['instrumental'] = $wordInstrumental;
+    $results[$key]['locative']     = $wordLocative;
 }

@@ -8,6 +8,10 @@
  */
 class GrammCase
 {
+    private $word;
+    private $length;
+    private $lastOne;
+    private $lastTwo;
 
     /**
      * GrammCase constructor.
@@ -17,12 +21,10 @@ class GrammCase
      */
     public function __construct($word)
     {
-
         $this->word = $word;
         $this->length = strlen($word);
         $this->lastOne = substr($word, -1);
         $this->lastTwo = substr($word, -2);
-
     }
 
 
@@ -35,11 +37,7 @@ class GrammCase
      */
     public function changeLast($additional, $cutLast = 0)
     {
-
-        $tmpWord = substr($this->word, 0, $this->length - $cutLast) . $additional;
-
-        return $tmpWord;
-
+        return substr($this->word, 0, $this->length - $cutLast) . $additional;
     }
 
 
@@ -52,9 +50,6 @@ class GrammCase
      */
     public function nominative()
     {
-
-
-
         return $this->word;
     }
 
@@ -68,6 +63,7 @@ class GrammCase
      */
     public function genitive()
     {
+        // ToDo Implementation
 
         return '';
     }
@@ -82,13 +78,10 @@ class GrammCase
      */
     public function dative()
     {
-
-
         switch ($this->lastTwo) {
             case 'ar':
                 return $this->changeLast('ru', 2);
         }
-
 
         switch ($this->lastOne) {
             case 'a':
@@ -109,8 +102,6 @@ class GrammCase
             default:
                 return $this->word;
         }
-
-
     }
 
 
@@ -123,8 +114,6 @@ class GrammCase
      */
     public function accusative()
     {
-
-
         /**
          * Check for last two letters
          */
@@ -133,7 +122,6 @@ class GrammCase
                 return $this->changeLast('ra', 2);
                 break;
         }
-
 
         switch ($this->lastOne) {
             case 'a':
@@ -154,10 +142,7 @@ class GrammCase
             default:
                 return $this->word;
         }
-
-
     }
-
 
     /**
      * Case: Vocative
@@ -168,8 +153,6 @@ class GrammCase
      */
     public function vocative()
     {
-
-
         switch ($this->lastTwo) {
             case 'da':
             case 'sa':
@@ -179,7 +162,6 @@ class GrammCase
             case 'ar':
                 return $this->changeLast('re', 2);
         }
-
 
         switch ($this->lastOne) {
             case 'n':
@@ -195,10 +177,7 @@ class GrammCase
             default:
                 return $this->word;
         }
-
-
     }
-
 
     /**
      * Case: Instrumental
@@ -209,13 +188,10 @@ class GrammCase
      */
     public function instrumental()
     {
-
-
         switch ($this->lastTwo) {
             case 'ar':
                 return $this->changeLast('rom', 2);
         }
-
 
         switch ($this->lastOne) {
             case 'o':
@@ -235,10 +211,7 @@ class GrammCase
             default:
                 return $this->word;
         }
-
-
     }
-
 
     /**
      * Case: Locative
@@ -249,13 +222,10 @@ class GrammCase
      */
     public function locative()
     {
-
-
         switch ($this->lastTwo) {
             case 'ar':
                 return $this->changeLast('ru', 2);
         }
-
 
         switch ($this->lastOne) {
             case 'a':
@@ -275,8 +245,5 @@ class GrammCase
             default:
                 return $this->word;
         }
-
-
     }
-
 }
